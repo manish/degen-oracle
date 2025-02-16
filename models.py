@@ -36,8 +36,9 @@ class Spread:
     return_over_risk: float
 
     def __str__(self):
+        expiration_date = self.expiration if isinstance(self.expiration, str) else self.expiration.strftime('%Y-%m-%d')
         return (
-            f"\n{self.ticker} [{self.short_option.underlying_price:.2f}] {self.expiration} Expiry {self.short_option.dte}DTE {self.side.upper()} Credit Spread:\n"
+            f"\n{self.ticker} [{self.short_option.underlying_price:.2f}] {expiration_date.split(' ')[0]} Expiry {self.short_option.dte}DTE {self.side.upper()} Credit Spread:\n"
             f"\t{'Strikes:':<30} -{self.short_option.strike}/+{self.long_option.strike} (-{abs(self.short_option.delta):.2f}/+{abs(self.long_option.delta):.2f})\n"
             f"\t{'Credit Received:':<30} {self.credit_received:.2f}\n"
             f"\t{'Collateral Required:':<30} {self.collateral_required:.2f}\n"

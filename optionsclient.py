@@ -5,7 +5,7 @@ class OptionsClient:
     def __init__(self, token):
         self.token = token
 
-    def get_option_expiration_side_delta(self, ticker, expiration, side: str, delta: float):
+    def get_option_expiration_side_delta(self, ticker, expiration, side: str, delta: str):
         result = self.make_request(f'https://api.marketdata.app/v1/options/chain/{ticker}/?expiration={expiration}&side={side}&delta={delta}')
         for key,value in result.items():
             if isinstance(value, list):
