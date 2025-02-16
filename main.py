@@ -1,6 +1,6 @@
-from consts import API_KEY
-from optionsclient import OptionsClient
-from spreadbuilder import SpreadBuilder
+from optionsbuilder.consts import API_KEY
+from optionsbuilder.optionsclient import OptionsClient
+from optionsbuilder.spreadbuilder import SpreadBuilder
 import argparse
 import logging
 from datetime import datetime

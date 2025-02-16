@@ -1,6 +1,6 @@
-from optionsclient import OptionsClient
-from models import Spread
-from utils import get_hours_next_trading, get_new_price_after_x_hours
+from optionsbuilder.optionsclient import OptionsClient
+from optionsbuilder.models import Spread
+from optionsbuilder.utils import get_hours_next_trading, get_new_price_after_x_hours
 import logging
 
 class SpreadBuilder:

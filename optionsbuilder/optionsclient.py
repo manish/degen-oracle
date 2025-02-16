@@ -1,5 +1,5 @@
 import requests
-from models import OptionsEntry
+from optionsbuilder.models import OptionsEntry
 
 class OptionsClient:
     def __init__(self, token):

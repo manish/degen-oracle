@@ -1,7 +1,7 @@
 import pandas_market_calendars as mcal
 from datetime import datetime, timedelta, timezone
 import pandas as pd
-from models import OptionsEntry
+from optionsbuilder.models import OptionsEntry
 
 def get_new_price_after_x_hours(entry: OptionsEntry, hours_until_next_trading: float) -> float:
     return entry.last + ((entry.theta / 24) * hours_until_next_trading)
