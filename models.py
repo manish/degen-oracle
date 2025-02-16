@@ -32,7 +32,7 @@ class Spread:
     credit_received: float
     collateral_required: float
     maximum_risk: float
-    max_risk_on__investment: float
+    max_risk_on_investment: float
     return_over_risk: float
 
     def __str__(self):
@@ -43,6 +43,6 @@ class Spread:
             f"\t{'Credit Received:':<30} {self.credit_received:.2f}\n"
             f"\t{'Collateral Required:':<30} {self.collateral_required:.2f}\n"
             f"\t{'Maximum Risk:':<30} {self.maximum_risk:.2f}\n"
-            f"\t{'Maximum Risk on Investment:':<30} {self.max_risk_on__investment*100:.2f}%\n"
+            f"\t{'Maximum Risk on Investment:':<30} {self.max_risk_on_investment*100:.2f}%\n"
             f"\t{'Return over risk:':<30} {self.return_over_risk*100:.2f}%\n"
         )
