@@ -1,3 +1,4 @@
+from datetime import datetime
 from optionsbuilder.optionsclient import OptionsClient
 from optionsbuilder.models import Spread
 from optionsbuilder.utils import get_hours_next_trading, get_new_price_after_x_hours
@@ -47,6 +48,13 @@ class SpreadBuilder:
         max_risk_on_investment=maximum_risk / collateral_required
         return_over_risk=credit_received / maximum_risk
 
+        optionstrat_strategy = "bull-put-spread" if self.side == "put" else "bear-call-spread"
+        ymd = datetime.strptime(recent_expiration, '%Y-%m-%d').strftime('%y%m%d')
+        long_option_symbol, short_option_symbol = [f"{self.ticker}{ymd}{self.side[0].upper()}{strike}"
+                                                   for strike in (long_option.strike, short_option.strike)]
+
+        optionstrat_url = f"https://optionstrat.com/build/{optionstrat_strategy}/{self.ticker}/.{long_option_symbol},-.{short_option_symbol}"
+
         return Spread(
             ticker=self.ticker,
             side=self.side,
@@ -60,7 +68,8 @@ class SpreadBuilder:
             collateral_required=collateral_required,
             maximum_risk=maximum_risk,
             max_risk_on_investment=max_risk_on_investment,
-            return_over_risk=return_over_risk
+            return_over_risk=return_over_risk,
+            optionstrat_url=optionstrat_url
         )
     
     def _get_expiration_and_hours_until_trading(self):

@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pandas-market-calendars = "*"
+requests = "*"
 
 [dev-packages]
 

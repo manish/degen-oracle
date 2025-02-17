@@ -37,20 +37,23 @@ credit_spread_parser.add_argument("--debug", action="store_true", help="Enable d
 credit_spread_parser.add_argument("--expiry", type=validate_expiry, help="Expiry date in YYYY-MM-DD format")
 args = parser.parse_args()
 
-logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO)
+match args.command:
+    case "credit-spread":
+        logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO)
 
-if args.command == "credit-spread":
-    ticker = args.ticker
-    side = args.side
-    short_delta = args.short_delta
-    long_delta = args.long_delta
+        ticker = args.ticker
+        side = args.side
+        short_delta = args.short_delta
+        long_delta = args.long_delta
 
-    client = OptionsClient(API_KEY)
-    spread = (SpreadBuilder(client)
-              .set_expiry(args.expiry)
-              .set_ticker(ticker)
-              .set_side(side)
-              .set_short_delta(short_delta)
-              .set_long_delta(long_delta)
-              .run())
-    print(spread)
+        client = OptionsClient(API_KEY)
+        spread = (SpreadBuilder(client)
+                  .set_expiry(args.expiry)
+                  .set_ticker(ticker)
+                  .set_side(side)
+                  .set_short_delta(short_delta)
+                  .set_long_delta(long_delta)
+                  .run())
+        print(spread)
+    case _:
+        parser.print_help()
